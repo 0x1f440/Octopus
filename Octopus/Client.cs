@@ -16,6 +16,8 @@ namespace Octopus
         NetworkStream stream;
         StreamWriter writer;
         StreamReader reader;
+
+        private delegate void SafeCallDelegate(string text);
         private static Client instance;
         public static Client Instance
         {
@@ -32,17 +34,16 @@ namespace Octopus
             }
         }
 
-        private delegate void SafeCallDelegate(string text);
-
         public TcpClient client;
-        string channel;
+        string channel, host;
+        int port;
 
 
-        public void StartClient(string name)
+        public void StartClient(string server, string name)
         {
             Instance = this;
 
-            ConnectToServer();
+            ConnectToServer(server);
 
             Task login = Task.Run(() => Login(name));
             login.Wait();
@@ -50,10 +51,14 @@ namespace Octopus
             StartReceivingFromServer();
         }
 
-        private void ConnectToServer()
+        private void ConnectToServer(string server)
         {
             client = new TcpClient();
-            client.Connect("irc.ozinger.org", 6666);
+
+            string[] temp = server.Split('/',':','\\');
+            host = temp[0];
+            port = int.Parse(temp[1]);
+            client.Connect(host, port);
 
             stream = client.GetStream();
             reader = new StreamReader(stream);
@@ -63,7 +68,7 @@ namespace Octopus
         private void Login(string name)
         {
             SendRawToServer("NICK " + name);
-            SendRawToServer("USER " + name + " " + name + " irc.ozinger.org :realname");
+            SendRawToServer("USER " + name + " " + name + " " + host + " :realname");
 
             ReceiveFromServer();
             ReceiveFromServer();

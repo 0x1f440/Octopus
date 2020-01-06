@@ -29,7 +29,7 @@ namespace Octopus
         {
 			Dispatcher.Invoke(() =>
 			{
-				Client.Instance.StartClient(nicknameBox.Text);
+				Client.Instance.StartClient(serverBox.Text, nicknameBox.Text);
 			});
 
             Close();
