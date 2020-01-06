@@ -5,12 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Octopus"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="450" Width="800" Topmost="True">
-    <Grid>
-        <Label Content="Server" HorizontalAlignment="Left" Margin="164,156,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.449,-2.153" Height="29"/>
-        <TextBox Name="serverBox" Height="26" TextWrapping="Wrap" Text="irc.ozinger.org/6666" VerticalAlignment="Top" Margin="212,156,277,0"/>
-        <Label Content="Nickname" HorizontalAlignment="Left" Margin="144,190,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="nicknameBox" Height="26" TextWrapping="Wrap" VerticalAlignment="Top" Margin="212,190,277,0"/>
-        <Button Name="loginButton" Content="Join!" HorizontalAlignment="Left" Margin="539,156,0,0" VerticalAlignment="Top" Width="75" Height="60"/>
+        Title="LoginWindow" Height="498.112" Width="558.536" Topmost="True" WindowStyle="None" TextOptions.TextFormattingMode="Ideal" WindowStartupLocation="CenterScreen" Background="White">
+    <Grid Margin="0,90,4.5,74" HorizontalAlignment="Center" VerticalAlignment="Center" Height="329" Width="549">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240*"/>
+            <ColumnDefinition Width="53*"/>
+            <ColumnDefinition Width="256*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Server" HorizontalAlignment="Left" Margin="160,102,0,0" VerticalAlignment="Top" Height="30" Foreground="#FF360067" FontFamily="Segoe UI Semibold"/>
+        <TextBox Name="serverBox" BorderThickness="0 0 0 2" Height="26" TextWrapping="Wrap" Text="irc.ozinger.org/6666" VerticalAlignment="Top" Margin="160,132,159,0" Width="230" HorizontalAlignment="Center" BorderBrush="#FF360067" Foreground="#FF360067" Grid.ColumnSpan="3"/>
+        <Label Content="Nickname" HorizontalAlignment="Left" Margin="160,176,0,0" VerticalAlignment="Top" Foreground="#FF360067" FontFamily="Segoe UI Semibold"/>
+        <TextBox Name="nicknameBox" BorderThickness="0 0 0 2" Height="26" TextWrapping="Wrap" VerticalAlignment="Top" Margin="160,202,159,0" Width="230" HorizontalAlignment="Center" BorderBrush="#FF360067" Foreground="#FF360067" Grid.ColumnSpan="3"/>
+        <Button Name="loginButton" Content="Join" HorizontalAlignment="Center" Margin="160,249,159,0" VerticalAlignment="Top" Width="230" Height="30" Foreground="White" Background="#FF360067" Grid.ColumnSpan="3" BorderThickness="0"/>
+        <Image Grid.ColumnSpan="3" Margin="237,19,236,245" Source="logo.png" Stretch="Fill"/>
     </Grid>
 </Window>

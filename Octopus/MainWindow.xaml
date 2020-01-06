@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Octopus"
         mc:Ignorable="d"
-        Title="Octopus" Height="523.134" Width="844.996">
+        Title="Octopus IRC Client" Width="762" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" WindowState="Maximized">
 	<Grid Margin="10">
 		<TextBlock Name="channelName" HorizontalAlignment="Left" Margin="0,2,0,0" TextWrapping="Wrap" Text="Use /Join #ChannelName" VerticalAlignment="Top"/>
-		<ScrollViewer Margin="0,23,0,0">
+		<ScrollViewer Name="chatScrollViewer" Margin="0,23,0,0">
 			<TextBlock Name="chattingLog" HorizontalAlignment="Stretch" Margin="0,30,0,18" TextWrapping="Wrap"/>
 		</ScrollViewer>
 		<TextBox Name ="inputBox" Margin="0,402,0,0" TextWrapping="Wrap" VerticalAlignment="Bottom"/>

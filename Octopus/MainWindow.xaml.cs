@@ -59,7 +59,10 @@ namespace Octopus
         public void AppendToChatbox(string message)
         {
 			if(message != "")
+            {
 				chatContentBox.Text += message + '\n';
+                chatScrollViewer.ScrollToBottom();
+            }
         }
     }
 }
