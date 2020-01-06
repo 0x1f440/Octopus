@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Octopus"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="450" Width="800">
+        Title="LoginWindow" Height="450" Width="800" Topmost="True">
     <Grid>
         <Label Content="Server" HorizontalAlignment="Left" Margin="164,156,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.449,-2.153" Height="29"/>
         <TextBox Name="serverBox" Height="26" TextWrapping="Wrap" Text="irc.ozinger.org/6666" VerticalAlignment="Top" Margin="212,156,277,0"/>
