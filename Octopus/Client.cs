@@ -35,7 +35,7 @@ namespace Octopus
         }
 
         public TcpClient client;
-        string channel, host;
+        string channel, host, name;
         int port;
 
 
@@ -69,6 +69,7 @@ namespace Octopus
         {
             SendRawToServer("NICK " + name);
             SendRawToServer("USER " + name + " " + name + " " + host + " :realname");
+            this.name = name;
 
             ReceiveFromServer();
             ReceiveFromServer();
@@ -78,6 +79,7 @@ namespace Octopus
         {
             var receiveThread = new Thread(new ThreadStart(ReceiveFromServerThread));
             receiveThread.Start();
+            MainWindow.Instance.ChangeNickname(name);
         }
 
         private string ReceiveFromServer()
@@ -100,14 +102,19 @@ namespace Octopus
 
         private void ReceiveFromServerThread()
         {
-			string s;
+			string[] s;
             while (true)
 			{
-				s = ReceiveFromServer();
+				s = ReceiveFromServer().Split(new string[] { "PRIVMSG" }, StringSplitOptions.None);
 
-				if (s.Length > 0){
+				if (s.Length > 0 && s.Length == 2)
+				{
+					string name = s[0].Split('!')[0];
+					string[] temp = s[1].Split(new char[] { ':' }, 2);
+					string channel = temp[0];
+					string msg = temp[1];
 					Application.Current.Dispatcher.Invoke(() => {
-						MainWindow.Instance.AppendToChatbox(s);
+						MainWindow.Instance.AppendToChatbox(name, channel, msg);
 					});
 					
 				}

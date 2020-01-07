@@ -5,13 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Octopus
 {
@@ -34,6 +28,12 @@ namespace Octopus
 
             chatInputBox.KeyUp += CheckEnterPressed;
 
+            Width = SystemParameters.WorkArea.Width;
+            Height = SystemParameters.WorkArea.Height;
+            Left = 0;
+            Top = 0;
+            WindowState = WindowState.Normal;
+
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.Show();
         }
@@ -50,17 +50,27 @@ namespace Octopus
             chatInputBox.Clear();
         }
 
+        public void ChangeNickname(string name)
+        {
+            nickname.Content = name;
+        }
+
         private void SendMessage()
         {
             Client.Instance.SendToServer(chatInputBox.Text);
+			AppendMessage(nickname.Content.ToString(), chatInputBox.Text); 
             chatInputBox.Clear();
         }
 
-        public void AppendToChatbox(string message)
+		private void AppendMessage(string name, string message){
+			AppendToChatbox(name, channelName.Text.ToString() ,chatInputBox.Text);
+		}
+
+        public void AppendToChatbox(string name, string channel, string message)
         {
 			if(message != "")
             {
-				chatContentBox.Text += message + '\n';
+				chatContentBox.Text += name + channel +" :: " + message;
                 chatScrollViewer.ScrollToBottom();
             }
         }
