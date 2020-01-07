@@ -109,10 +109,11 @@ namespace Octopus
 
 				if (s.Length > 0 && s.Length == 2)
 				{
-					string name = s[0].Split('!')[0];
+					string name = s[0].Split('!')[0].Substring(1);
 					string[] temp = s[1].Split(new char[] { ':' }, 2);
 					string channel = temp[0];
 					string msg = temp[1];
+
 					Application.Current.Dispatcher.Invoke(() => {
 						MainWindow.Instance.AppendToChatbox(name, channel, msg);
 					});

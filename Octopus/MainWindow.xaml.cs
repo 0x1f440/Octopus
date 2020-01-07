@@ -58,18 +58,20 @@ namespace Octopus
         private void SendMessage()
         {
             Client.Instance.SendToServer(chatInputBox.Text);
-			AppendMessage(nickname.Content.ToString(), chatInputBox.Text); 
+			AppendMessage("→ " + nickname.Content.ToString(), chatInputBox.Text); 
             chatInputBox.Clear();
         }
 
 		private void AppendMessage(string name, string message){
-			AppendToChatbox(name, channelName.Text.ToString() ,chatInputBox.Text);
+			AppendToChatbox(name, " " + channelName.Text.ToString() ,chatInputBox.Text);
 		}
 
         public void AppendToChatbox(string name, string channel, string message)
         {
 			if(message != "")
             {
+				if (!message.EndsWith("\n"))
+					message += '\n';
 				chatContentBox.Text += name + channel +" :: " + message;
                 chatScrollViewer.ScrollToBottom();
             }
